@@ -27,38 +27,45 @@ You can find each of the levels split into separate files, linked below.
 
 **Note:** Some of the levels are optional which means that you will build a working project without them. However, to make something really impressive you will need to complete as much as you can.
 
-### Week 1 - Front End
+### Week 1 - Client
 
 - [Level 100](./exercises/100.md)
-  - A core version of the React front end of the app
+  - A core version of the React frontend of the app
 - [Level 150](./exercises/150.md)
   - Deploying your application to make it available for others to see
 - [Level 199](./exercises/199.md) (Optional)
-  - Stretch goals for the front end if you have time
+  - Stretch goals for the frontend if you have time
 
-### Week 2 - Back End (without Database)
+### Week 2/A - Database
 
 - [Level 200](./exercises/200.md)
-  - A core version of the Node + Express back end of the app
+  - Designing the database schema
 - [Level 250](./exercises/250.md)
-  - Connect your Front End and Back End together
-- [Level 299](./exercises/299.md) (Optional)
-  - Stretch goals for the back end if you have time
+  - Deploying the database so it's available online
 
-### Week 3 - Back End (with Database)
+### Week 2/B - Server
 
 - [Level 300](./exercises/300.md)
-  - Integrate the back end with a database
+  - Creating the Node+Express.JS based backend of the application
+- [Level 350](./exercises/350.md)
+  - Deploying the backend for others to see
 - [Level 399](./exercises/399.md) (Optional)
-  - Stretch goals for the database if you have time
-- [Level 999](./exercises/999.md) (Optional)
-  - More optional goals for if you have time
+  - Stretch goals for the backend if you have time
+
+### Week 3 - Linking Client and Server
+
+- [Level 400](./exercises/400.md)
+  - Integrate the frontend with the backend
+- [Level 450](./exercises/450.md)
+  - Verifying deployment and making sure your application is available
+- [Level 499](./exercises/499.md) (Optional)
+  - Stretch goals for your project if you have time
 
 ## Sample Solution
 
-Here is an example solution of the Front End:
+Here is an example solution for both frontend and backend:
 
-https://vid-rec2.netlify.app/
+https://video-recommendation-6o7t.onrender.com
 
 **Note:** You can design the website to look however you like.
 
