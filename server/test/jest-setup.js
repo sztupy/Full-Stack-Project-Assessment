@@ -16,7 +16,7 @@ beforeAll(async () => {
 
 	// Load the schema file at the start of the tests. This should clear out the database and re-initialize with the default set of data
 	const schemaSql = await readFile(
-		path.resolve(__dirname, "../../db/schema.sql"),
+		path.resolve(__dirname, "../../db/initdb.sql"),
 		"utf8"
 	);
 	await db.query(schemaSql);

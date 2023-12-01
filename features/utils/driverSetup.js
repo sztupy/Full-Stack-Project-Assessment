@@ -10,7 +10,7 @@ beforeAll(async () => {
 	// Make sure we load up the test database
 	if (process.env.NODE_ENV === "test") {
 		const schemaSql = await readFile(
-			path.resolve(__dirname, "../../db/schema.sql"),
+			path.resolve(__dirname, "../../db/initdb.sql"),
 			"utf8"
 		);
 		await db.query(schemaSql);
