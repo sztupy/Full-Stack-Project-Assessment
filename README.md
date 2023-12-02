@@ -65,7 +65,7 @@ You can find each of the levels split into separate files, linked below.
 
 Here is an example solution for both frontend and backend:
 
-https://video-recommendation-6o7t.onrender.com
+https://video-recommendations-cyf.netlify.app/
 
 **Note:** You can design the website to look however you like.
 
