@@ -4,65 +4,80 @@ import "@testing-library/jest-dom";
 import Video from "../../src/components/Video";
 
 const video = {
-    id: 1,
-    title: "The Title",
-    url: "https://www.youtube.com/watch?v=ABCDEFGHIJK",
-    rating: 1234
-}
+	id: 1,
+	title: "The Title",
+	url: "https://www.youtube.com/watch?v=ABCDEFGHIJK",
+	rating: 1234,
+	created_at: "2023-01-01T01:01:01Z",
+};
 let updateVideoMock = null;
 
-describe("Main Page", () => {
-    beforeEach(async () => {
-        updateVideoMock = jest.fn();
+describe("Video component", () => {
+	beforeEach(async () => {
+		updateVideoMock = jest.fn();
 
-		render(<Video video={video} updateVideo={updateVideoMock}/>);
+		render(<Video video={video} updateVideo={updateVideoMock} />);
 
 		await screen.findByText("The Title");
 	});
 
-    describe("Rendering", () => {
-        it("Renders the title", async () => {
-            expect(screen.getByText("The Title")).toBeInTheDocument();
-        });
+	describe("Rendering", () => {
+		it("Renders the title", async () => {
+			expect(screen.getByText("The Title")).toBeInTheDocument();
+		});
 
-        it("Renders the video", async() => {
-            expect(screen.getByTitle("The Title").src).toBe("https://www.youtube.com/embed/ABCDEFGHIJK");
-        });
+		it("Renders the video", async () => {
+			expect(screen.getByTitle("The Title").src).toBe(
+				"https://www.youtube.com/embed/ABCDEFGHIJK"
+			);
+		});
 
-        it("Renders the rating", async() => {
-            expect(screen.getByText(1234)).toBeInTheDocument();
-        });
-    });
+		it("Renders the rating", async () => {
+			expect(screen.getByText(1234)).toBeInTheDocument();
+		});
 
-    describe("Actions", () => {
-        it("Renders the delete button", async() => {
-            expect(screen.getByRole('button', { name: 'Remove video' })).toBeInTheDocument();
-        });
+		it("Renders the recommended since date in the user's locale", async () => {
+			expect(
+				screen.getByText(new Date(video.created_at).toLocaleString())
+			).toBeInTheDocument();
+		});
+	});
 
-        it("Calls the delete action when pressed", async() => {
-            fireEvent.click(screen.getByRole('button', { name: 'Remove video' }));
+	describe("Actions", () => {
+		it("Renders the delete button", async () => {
+			expect(
+				screen.getByRole("button", { name: "Remove video" })
+			).toBeInTheDocument();
+		});
 
-            expect(updateVideoMock).toHaveBeenCalledWith(video, 'delete');
-        });
+		it("Calls the delete action when pressed", async () => {
+			fireEvent.click(screen.getByRole("button", { name: "Remove video" }));
 
-        it("Renders the vote up button", async() => {
-            expect(screen.getByRole('button', { name: 'Up Vote' })).toBeInTheDocument();
-        });
+			expect(updateVideoMock).toHaveBeenCalledWith(video, "delete");
+		});
 
-        it("Calls the up vote action when pressed", async() => {
-            fireEvent.click(screen.getByRole('button', { name: 'Up Vote' }));
+		it("Renders the vote up button", async () => {
+			expect(
+				screen.getByRole("button", { name: "Up Vote" })
+			).toBeInTheDocument();
+		});
 
-            expect(updateVideoMock).toHaveBeenCalledWith(video, 'up');
-        });
+		it("Calls the up vote action when pressed", async () => {
+			fireEvent.click(screen.getByRole("button", { name: "Up Vote" }));
 
-        it("Renders the vote down button", async() => {
-            expect(screen.getByRole('button', { name: 'Down Vote' })).toBeInTheDocument();
-        });
+			expect(updateVideoMock).toHaveBeenCalledWith(video, "up");
+		});
 
-        it("Calls the up vote action when pressed", async() => {
-            fireEvent.click(screen.getByRole('button', { name: 'Down Vote' }));
+		it("Renders the vote down button", async () => {
+			expect(
+				screen.getByRole("button", { name: "Down Vote" })
+			).toBeInTheDocument();
+		});
 
-            expect(updateVideoMock).toHaveBeenCalledWith(video, 'down');
-        });
-    });
+		it("Calls the up vote action when pressed", async () => {
+			fireEvent.click(screen.getByRole("button", { name: "Down Vote" }));
+
+			expect(updateVideoMock).toHaveBeenCalledWith(video, "down");
+		});
+	});
 });

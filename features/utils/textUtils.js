@@ -2,14 +2,16 @@ import getDriver from "./driverSetup";
 import { until, By } from "selenium-webdriver";
 
 function wait(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 // helper utility to find a piece of text inside the browser
 async function findByText(text, timeout, parent) {
 	timeout ||= 20000;
 	if (parent) {
-		return await parent.findElement(By.xpath(`//*[text()[contains(.,'${text}')]]`));
+		return await parent.findElement(
+			By.xpath(`//*[text()[contains(.,'${text}')]]`)
+		);
 	} else {
 		return await getDriver().wait(
 			until.elementLocated(By.xpath(`//*[text()[contains(.,'${text}')]]`)),
@@ -31,6 +33,5 @@ async function waitForTextToDisappear(text, timeout) {
 		expect(error.name).toBe("TimeoutError");
 	}
 }
-
 
 export { findByText, waitForTextToDisappear };
