@@ -25,9 +25,9 @@ This project is split into several levels that you should complete each week of 
 
 You can find each of the levels split into separate files, linked below.
 
-**Note:** Some of the levels are optional which means that you will build a working project without them. However, to make something really impressive you will need to complete as much as you can.
+**Note:** Some of the levels are optional which means that you can build a working project without them. However, to make something really impressive you will need to complete as much as you can.
 
-### Week 1 - Client
+### Week 1 - Frontend
 
 - [Level 100](./exercises/100.md)
   - A core version of the React frontend of the app
@@ -43,7 +43,7 @@ You can find each of the levels split into separate files, linked below.
 - [Level 250](./exercises/250.md)
   - Deploying the database so it's available online
 
-### Week 2/B - Server
+### Week 2/B - Backend
 
 - [Level 300](./exercises/300.md)
   - Creating the Node+Express.JS based backend of the application
@@ -52,7 +52,7 @@ You can find each of the levels split into separate files, linked below.
 - [Level 399](./exercises/399.md) (Optional)
   - Stretch goals for the backend if you have time
 
-### Week 3 - Linking Client and Server
+### Week 3 - Full Stack
 
 - [Level 400](./exercises/400.md)
   - Integrate the frontend with the backend
