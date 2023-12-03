@@ -13,7 +13,7 @@ const pool =
 	new Pool({
 		connectionString: databaseUrl,
 		connectionTimeoutMillis: 5000,
-		ssl: databaseUrl.includes("localhost")
+		ssl: (databaseUrl.includes("localhost") || databaseUrl.includes("flycast"))
 			? false
 			: { rejectUnauthorized: false },
 	});
@@ -30,6 +30,7 @@ export const connectDb = async () => {
 		console.log(err);
 		process.exit(1);
 	}
+	console.log(process.env);
 	console.log(`Postgres connected to ${client.database}`);
 	client.release();
 };

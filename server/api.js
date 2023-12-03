@@ -31,6 +31,7 @@ router.get("/videos", async (req, res) => {
 			data: result.rows,
 		});
 	} catch (error) {
+		console.log(error);
 		res
 			.status(500)
 			.json({ success: false, message: "Could not download the video list!" });
