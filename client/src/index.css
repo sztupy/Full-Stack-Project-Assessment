@@ -7,15 +7,6 @@ h1 {
 	text-align: center;
 }
 
-.message {
-	width: auto;
-	padding: 1em;
-	margin: 1em;
-	border: 1px solid red;
-	border-radius: 5px;
-	background-color: lightsalmon;
-}
-
 #videos {
 	display: grid;
 	grid-auto-flow: row;
@@ -92,25 +83,6 @@ h1 {
 	background-color: bisque;
 }
 
-.video .recommended-since:before {
-	content: "🕒 ";
-}
-
-.video .recommended-since {
-	max-width: fit-content;
-	padding: 0.5em;
-
-	display: block;
-	font-size: 1em;
-
-	margin: 0.5em auto;
-
-	border: 1px solid black;
-	border-radius: 5px;
-
-	background-color: bisque;
-}
-
 .video h3 {
 	position: absolute;
 	left: -10000px;
@@ -144,13 +116,6 @@ h1 {
 	display: grid;
 	column-gap: 1em;
 	grid-template-columns: 1fr 1fr 1fr;
-}
-
-.control-message {
-	position: absolute;
-	bottom: 0;
-	background-color: white;
-	border: 1px solid red;
 }
 
 #submit-video {
