@@ -3,10 +3,4 @@
   command = "npm run build"
 [functions]
   directory = "server/functions"
-  external_node_modules = ["express"]
   node_bundler = "esbuild"
-[[redirects]]
-  force = true
-  from = "/api/*"
-  status = 200
-  to = "/.netlify/functions/app/:splat"

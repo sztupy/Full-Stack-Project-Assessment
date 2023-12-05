@@ -1,6 +1,8 @@
 import "dotenv/config";
 
-import { Pool } from "pg";
+import pkg from "pg";
+
+const { Pool } = pkg;
 
 // make sure we run automated tests against a different database to production
 const databaseUrl =
@@ -8,7 +10,7 @@ const databaseUrl =
 		? process.env.TEST_DATABASE_URL
 		: process.env.DATABASE_URL;
 
-const pool =
+let pool =
 	databaseUrl &&
 	new Pool({
 		connectionString: databaseUrl,
@@ -39,6 +41,13 @@ export const disconnectDb = () => {
 		return;
 	}
 	pool.end();
+	pool = new Pool({
+		connectionString: databaseUrl,
+		connectionTimeoutMillis: 5000,
+		ssl: databaseUrl.includes("localhost")
+			? false
+			: { rejectUnauthorized: false },
+	});
 };
 
 export default {
