@@ -1,5 +1,16 @@
 # Video Recommendation App
 
+## Solution
+
+This is an example solution for the project described below.
+
+You can check the deployed projects on the following websites:
+
+* Render deployment example: https://video-recommendation-6ma1.onrender.com/
+* Netlify + ElephantSQL deployment example using express.js wrapper: https://video-recommendations-cyf.netlify.app/
+* Netlify + ElephantSQL deployment example using native functions: https://video-recommendations-functions.netlify.app/
+* Fly.io deployment example: https://video-recommendations-cyf.fly.dev/
+
 ## Background
 
 Before you continue to final projects we have to make sure that you can meaningfully contribute to a technical project.
