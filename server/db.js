@@ -13,9 +13,10 @@ const pool =
 	new Pool({
 		connectionString: databaseUrl,
 		connectionTimeoutMillis: 5000,
-		ssl: databaseUrl.includes("localhost")
-			? false
-			: { rejectUnauthorized: false },
+		ssl:
+			databaseUrl.includes("localhost") || databaseUrl.includes("flycast")
+				? false
+				: { rejectUnauthorized: false },
 	});
 
 export const connectDb = async () => {
