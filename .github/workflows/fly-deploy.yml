@@ -2,8 +2,7 @@ name: Fly Deploy
 on:
   push:
     branches:
-      - none
-      # - main
+      - main
 
 jobs:
   fly-deploy:
