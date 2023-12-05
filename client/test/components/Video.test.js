@@ -35,6 +35,12 @@ describe("Video component", () => {
 		it("Renders the rating", async () => {
 			expect(screen.getByText(1234)).toBeInTheDocument();
 		});
+
+		it("Renders the recommended since date in the user's locale", async () => {
+			expect(
+				screen.getByText(new Date(video.created_at).toLocaleString())
+			).toBeInTheDocument();
+		});
 	});
 
 	describe("Actions", () => {
