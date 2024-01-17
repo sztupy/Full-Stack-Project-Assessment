@@ -7,7 +7,7 @@
 
 import express from "express";
 import serverless from "serverless-http";
-import apiRouter from "../api";
+import apiRouter from "../api.js";
 
 const app = express();
 

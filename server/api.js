@@ -1,6 +1,9 @@
 import { Router } from "express";
-import db from "./db";
+import db from "./db.js";
 const router = Router();
+import { readFile } from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "node:url";
 
 // source: https://stackoverflow.com/questions/3452546/how-do-i-get-the-youtube-video-id-from-a-url
 function youtubeLinkParser(url) {
@@ -31,6 +34,7 @@ router.get("/videos", async (req, res) => {
 			data: result.rows,
 		});
 	} catch (error) {
+		console.log(error);
 		res
 			.status(500)
 			.json({ success: false, message: "Could not download the video list!" });
@@ -147,6 +151,34 @@ router.post("/videos", async (req, res) => {
 		res
 			.status(500)
 			.json({ success: false, message: "Could not create video!" });
+	}
+});
+
+router.post("/videos/reset", async (req, res) => {
+	try {
+		const body = req.body;
+		if (body.code !== process.env.RESET_CODE) {
+			return res.status(403).json({ success: false, message: "Unauthorized!" });
+		}
+
+		let initDbLocation;
+		if (!process.env.LAMBDA_TASK_ROOT) {
+			const __dirname = path.dirname(fileURLToPath(import.meta.url));
+			initDbLocation = path.resolve(__dirname, "../db/initdb.sql");
+		} else {
+			initDbLocation = path.resolve(
+				process.env.LAMBDA_TASK_ROOT,
+				"db/initdb.sql"
+			);
+		}
+
+		const schemaSql = await readFile(initDbLocation, "utf8");
+		await db.query(schemaSql);
+		return res.status(200).json({ success: true, message: "OK" });
+	} catch (error) {
+		res
+			.status(500)
+			.json({ success: false, message: "Could not reset database!" });
 	}
 });
 

@@ -1,6 +1,14 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { Pool } from "pg";
+if (!process.env.LAMBDA_TASK_ROOT) {
+	const __dirname = path.dirname(fileURLToPath(import.meta.url));
+	dotenv.config({ path: path.join(__dirname, "../.env") });
+}
+
+import pg from "pg";
+const { Pool } = pg;
 
 // make sure we run automated tests against a different database to production
 const databaseUrl =
@@ -29,7 +37,7 @@ export const connectDb = async () => {
 		client = await pool.connect();
 	} catch (err) {
 		console.log(err);
-		process.exit(1);
+		throw err;
 	}
 	console.log(`Postgres connected to ${client.database}`);
 	client.release();

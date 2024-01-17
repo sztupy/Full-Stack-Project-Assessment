@@ -1,6 +1,6 @@
 import request from "supertest";
-import app from "./app";
-import db from "./db";
+import app from "./app.js";
+import db from "./db.js";
 
 describe("/api", () => {
 	describe("/videos", () => {

@@ -8,16 +8,7 @@ This means that we need to be sure that you can create and deploy Full Stack app
 
 ## Challenge
 
-In this project you will be building a project that fulfills the following User Stories
-
-- As a user, I want to be able to view a list of all YouTube videos posted on the site
-- As a user, I want to be able to post videos that I like from YouTube to my website.
-- As a user, I want to be able to delete videos from the website that I no longer like.
-- As a user, I want to be able to watch the videos embedded in the website.
-- As a user, I want to be able to "Up Vote" a video if I like it.
-- As a user, I want to be able to "Down Vote" a video if I dislike.
-
-You don't need to worry about storing the video content itself - we'll rely on YouTube for this.
+In this project you will be building up a small project that allows you to share your favourite Youtube videos with the world. We will be starting up with a very small MVP (Minimal Viable Product), and built on top of it to make it nicer and more useful.
 
 ## Levels
 
@@ -27,54 +18,63 @@ You can find each of the levels split into separate files, linked below.
 
 **Note:** Some of the levels are optional which means that you can build a working project without them. However, to make something really impressive you will need to complete as much as you can.
 
-### Week 1 - Frontend
+### Week 1 - Minimal Viable Product
 
 - [Level 100](./exercises/100.md)
-  - A core version of the React frontend of the app
+  - Building up the data model
+- [Level 110](./exercises/110.md)
+  - Implementing the API
+- [Level 120](./exercises/120.md)
+  - Implementing the frontend
 - [Level 150](./exercises/150.md)
-  - Deploying your application to make it available for others to see
+  - Checking MVP adheres to the acceptance criteria
 - [Level 199](./exercises/199.md) (Optional)
-  - Stretch goals for the frontend if you have time
+  - Implementing code quality improvements
 
-### Week 2/A - Database
+### Week 2 - Additional features
 
 - [Level 200](./exercises/200.md)
-  - Designing the database schema
-- [Level 250](./exercises/250.md)
-  - Deploying the database so it's available online
+  - UX Improvements
+- [Level 210](./exercises/210.md)
+  - Allowing adding videos
+- [Level 220](./exercises/220.md)
+  - Allowing the removal of videos
+- [Level 299](./exercises/299.md) (Optional)
+  - Implementing optional new features
 
-### Week 2/B - Backend
+### Week 3 - Finalizing project
 
 - [Level 300](./exercises/300.md)
-  - Creating the Node+Express.JS based backend of the application
+  - Allowing rating of videos
 - [Level 350](./exercises/350.md)
-  - Deploying the backend for others to see
+  - Submitting solution for evaluation
 - [Level 399](./exercises/399.md) (Optional)
-  - Stretch goals for the backend if you have time
+  - Making project viable as a portfolio piece
 
-### Week 3 - Full Stack
+### Week 4 - Stretch goals
 
-- [Level 400](./exercises/400.md)
-  - Integrate the frontend with the backend
-- [Level 450](./exercises/450.md)
-  - Verifying deployment and making sure your application is available
+- Use this week as an extra time to implement missing required and optional features from previous weeks.
 - [Level 499](./exercises/499.md) (Optional)
-  - Stretch goals for your project if you have time
-
-## Sample Solution
-
-Here is an example solution for both frontend and backend:
-
-https://video-recommendations-cyf.netlify.app/
-
-**Note:** You can design the website to look however you like.
-
-## Design
-
-You are welcome to use [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) or any other design framework to help you build this app.
+  - Additional stretch goals to make your project really stand out
 
 ## Getting Started
 
 Fork this repository and then clone it to your computer.
 
-Progress to Level 100 when you are ready.
+Progress to [Level 100](./exercises/100.md) when you are ready.
+
+## Sample Solution
+
+Here is an example solution for both frontend and backend, including all optional features:
+
+https://cyf-fsa-solution.netlify.app/
+
+**Note:** You can design the website to look however you like.
+
+## Using this project for the launch project and other portfolio pieces
+
+While you are free to use this codebase for your future projects we recommend against it. This project is set up in a way to make it easy to understand, but lacks a lot of features that would be otherwise helpful.
+
+For launch projects and future portfolio pieces we recommend that you take a look at the [textbook starter kit](https://github.com/textbook/starter-kit/tree/v2). This assessment project is a simplified version of the starter kit, with a lot of the features removed to keep it light and more understandable. In fact, some of the challenges that we ask you is to re-add these features yourself.
+
+These features will already be present in the starter kit, hence it will be a much better starting point for you to work with. And since it uses the same libraries and setup that you will learn here, we believe you will feel immediately familiar with it as well.

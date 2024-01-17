@@ -1,3 +1,10 @@
+import dotenv from "dotenv";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+dotenv.config({ path: path.join(__dirname, "../../.env") });
+
 import {
 	patchPgForTransactions,
 	unpatchPgForTransactions,
@@ -6,9 +13,7 @@ import {
 } from "pg-transactional-tests";
 
 import { readFile } from "fs/promises";
-import path from "path";
-
-import db, { disconnectDb } from "../db";
+import db, { disconnectDb } from "../db.js";
 
 beforeAll(async () => {
 	// Set up pg-transaction-test that make sure the database is rolled back to the start after each run.
@@ -30,5 +35,5 @@ afterEach(rollbackTransaction);
 afterAll(async () => {
 	await rollbackTransaction();
 	unpatchPgForTransactions();
-	await disconnectDb();
+	disconnectDb();
 });
