@@ -19,6 +19,7 @@ function videoToJson(video) {
 		url: video.url,
 		title: video.title,
 		rating: video.rating,
+		created_at: video.created_at,
 	};
 }
 

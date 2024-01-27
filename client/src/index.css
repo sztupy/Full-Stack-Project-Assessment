@@ -103,6 +103,25 @@ h1 {
 	background-color: bisque;
 }
 
+.video .recommended-since:before {
+	content: "🕒 ";
+}
+
+.video .recommended-since {
+	max-width: fit-content;
+	padding: 0.5em;
+
+	display: block;
+	font-size: 1em;
+
+	margin: 0.5em auto;
+
+	border: 1px solid black;
+	border-radius: 5px;
+
+	background-color: bisque;
+}
+
 .video h3 {
 	position: absolute;
 	left: -10000px;

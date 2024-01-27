@@ -25,6 +25,10 @@ export default function Video({ video, updateVideo }) {
 					allowFullScreen
 				></iframe>
 			)}
+			<h3>Recommended since</h3>
+			<div title="Recommended since" className="recommended-since">
+				{new Date(video.created_at).toLocaleString()}
+			</div>
 			<h3>Rating</h3>
 			<div title="Rating" className="rating">
 				{video.rating}

@@ -4,7 +4,8 @@ CREATE TABLE videos (
   id SERIAL,
   title TEXT,
   url TEXT,
-  rating INT
+  rating INT,
+  created_at TIMESTAMP DEFAULT NOW()
 );
 
 INSERT INTO videos (title,url,rating) VALUES ('Never Gonna Give You Up','https://www.youtube.com/watch?v=dQw4w9WgXcQ',23);
