@@ -15,3 +15,60 @@ h1 {
 	border-radius: 5px;
 	background-color: lightsalmon;
 }
+
+#videos {
+	display: grid;
+	grid-auto-flow: row;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	column-gap: 10px;
+	row-gap: 10px;
+	margin: 0;
+	padding: 1em;
+}
+
+.video {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	list-style-type: none;
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 1em;
+	background-color: antiquewhite;
+
+	transition:
+		background-color 1s,
+		border-radius 1s;
+}
+
+.video:hover {
+	background-color: bisque;
+	border-radius: 0px;
+}
+
+.video h2 {
+	flex-grow: 1;
+}
+
+.video iframe {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+}
+
+.video h2 a {
+	color: darkblue;
+	text-decoration: none;
+}
+
+.video h2 a:visited {
+	color: black;
+}
+
+.video h2 a:hover {
+	color: blue;
+}
+
+.video h2 a:focus {
+	text-decoration: underline;
+}
