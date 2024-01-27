@@ -73,6 +73,28 @@ h1 {
 	text-decoration: underline;
 }
 
+.video h3 {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.controls {
+	display: grid;
+	column-gap: 1em;
+	grid-template-columns: 1fr;
+	margin-top: 1em;
+}
+
+.control-message {
+	position: absolute;
+	bottom: 0;
+	background-color: lightsalmon;
+}
+
 #submit-video {
 	text-align: center;
 	width: auto;

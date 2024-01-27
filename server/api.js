@@ -34,6 +34,25 @@ router.get("/videos", async (_, res) => {
 	}
 });
 
+router.delete("/videos/:id", async (req, res) => {
+	try {
+		const result = await db.query("DELETE FROM videos WHERE id = $1", [
+			req.params.id,
+		]);
+		if (result.rowCount !== 1) {
+			return res
+				.status(404)
+				.json({ success: false, message: "Could not find video" });
+		}
+
+		res.status(200).json({ success: true, message: "Video deleted" });
+	} catch (error) {
+		res
+			.status(500)
+			.json({ success: false, message: "Could not delete video!" });
+	}
+});
+
 router.post("/videos", async (req, res) => {
 	try {
 		const body = req.body;

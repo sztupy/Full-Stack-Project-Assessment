@@ -59,11 +59,41 @@ const App = () => {
 		publishToApi();
 	};
 
+	const deleteVideo = function (video) {
+		const deleteVideoAction = async (selectedVideo) => {
+			try {
+				const results = await fetch(`/api/videos/${selectedVideo.id}`, {
+					method: "DELETE",
+					headers: {
+						"Access-Control-Allow-Origin": "*",
+					},
+				});
+				const data = await results.json();
+				if (data.success) {
+					videos = videos.filter((e) => e.id !== selectedVideo.id);
+				} else {
+					selectedVideo.message =
+						data.message ||
+						"There was an error while trying to delete the video. Please reload the page and try again!";
+				}
+			} catch (error) {
+				selectedVideo.message =
+					"There was an error while trying to delete the video. Please reload the page and try again!";
+			}
+			setVideos([...videos]);
+		};
+
+		let selectedVideo = videos.find((e) => e.id === video.id);
+		if (selectedVideo) {
+			deleteVideoAction(selectedVideo);
+		}
+	};
+
 	return (
 		<>
 			<h1>Video Recommendations</h1>
 			{message && <h2 className="message">{message}</h2>}
-			<VideoList videos={videos} />
+			<VideoList videos={videos} deleteVideo={deleteVideo} />
 			<VideoSubmission addVideo={addVideo} />
 		</>
 	);

@@ -6,7 +6,7 @@ function youtubeLinkParser(url) {
 	return match && match[7].length == 11 ? match[7] : false;
 }
 
-export default function Video({ video }) {
+export default function Video({ video, deleteVideo }) {
 	const youtubeId = youtubeLinkParser(video.url);
 
 	return (
@@ -25,6 +25,11 @@ export default function Video({ video }) {
 					allowFullScreen
 				></iframe>
 			)}
+			<h3>Controls</h3>
+			<div className="control-message">{video.message}</div>
+			<div className="controls">
+				<button onClick={() => deleteVideo(video)}>Remove video</button>
+			</div>
 		</li>
 	);
 }
