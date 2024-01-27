@@ -6,3 +6,12 @@ body {
 h1 {
 	text-align: center;
 }
+
+.message {
+	width: auto;
+	padding: 1em;
+	margin: 1em;
+	border: 1px solid red;
+	border-radius: 5px;
+	background-color: lightsalmon;
+}

@@ -14,18 +14,21 @@ describe("Main Page", () => {
 		// Here we create a fake backend that will always return two videos when calling the /api/videos endpoint
 		server.use(
 			http.get("/api/videos", () =>
-				HttpResponse.json([
-					{
-						id: 1,
-						title: "Never Gonna Give You Up",
-						url: "https://www.youtube.com/watch?v=ABCDEFGHIJK",
-					},
-					{
-						id: 2,
-						title: "Other Title",
-						url: "https://www.youtube.com/watch?v=KJIHGFEDCBA",
-					},
-				])
+				HttpResponse.json({
+					success: true,
+					data: [
+						{
+							id: 1,
+							title: "Never Gonna Give You Up",
+							url: "https://www.youtube.com/watch?v=ABCDEFGHIJK",
+						},
+						{
+							id: 2,
+							title: "Other Title",
+							url: "https://www.youtube.com/watch?v=KJIHGFEDCBA",
+						},
+					],
+				})
 			)
 		);
 
@@ -82,9 +85,12 @@ describe("Main Page", () => {
 					return HttpResponse.json({ success: false });
 				}
 				return HttpResponse.json({
-					id: 3,
-					title: "New Title",
-					url: "https://www.youtube.com/watch?v=CDEYRFUTURE",
+					success: true,
+					data: {
+						id: 3,
+						title: "New Title",
+						url: "https://www.youtube.com/watch?v=CDEYRFUTURE",
+					},
 				});
 			})
 		);
