@@ -4,7 +4,7 @@ run-name: Enforce playwright end-to-end tests pass on committed files
 
 on:
   workflow_dispatch:
-  #pull_request:
+  pull_request:
 
 jobs:
   run-features:
