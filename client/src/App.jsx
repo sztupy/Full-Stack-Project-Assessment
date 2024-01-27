@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import VideoList from "./components/VideoList";
+import VideoSubmission from "./components/VideoSubmission";
 
 const App = () => {
 	let [videos, setVideos] = useState([]);
@@ -29,11 +30,41 @@ const App = () => {
 		fetchVideos();
 	}, [setVideos, setMessage]);
 
+	const addVideo = function (title, url) {
+		const publishToApi = async () => {
+			try {
+				const results = await fetch("/api/videos", {
+					method: "POST",
+					body: JSON.stringify({ title: title, url: url }),
+					headers: {
+						"Content-Type": "application/json",
+						"Access-Control-Allow-Origin": "*",
+					},
+				});
+				const data = await results.json();
+				if (data.success) {
+					setVideos([...videos, data.data]);
+				} else {
+					setMessage(
+						data.message ||
+							"Error while publishing the new video. Please reload the page and try again!"
+					);
+				}
+			} catch (error) {
+				setMessage(
+					"Error while publishing the new video. Please reload the page and try again!"
+				);
+			}
+		};
+		publishToApi();
+	};
+
 	return (
 		<>
 			<h1>Video Recommendations</h1>
 			{message && <h2 className="message">{message}</h2>}
 			<VideoList videos={videos} />
+			<VideoSubmission addVideo={addVideo} />
 		</>
 	);
 };

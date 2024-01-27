@@ -72,3 +72,35 @@ h1 {
 .video h2 a:focus {
 	text-decoration: underline;
 }
+
+#submit-video {
+	text-align: center;
+	width: auto;
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 1em;
+	margin: 1em;
+	background-color: antiquewhite;
+}
+
+#submit-video form {
+	display: grid;
+	row-gap: 1em;
+	column-gap: 1em;
+	max-width: 500px;
+	grid-template-columns: 100px auto;
+	margin: auto;
+}
+
+#submit-video form label {
+	text-align: right;
+}
+
+#submit-video button {
+	grid-column: span 2;
+}
+
+input.invalid {
+	background-color: lightpink;
+	border: 1px solid red;
+}
