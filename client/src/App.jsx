@@ -113,6 +113,9 @@ const App = () => {
 		let selectedVideo = videos.find((e) => e.id === video.id);
 
 		if (selectedVideo) {
+			selectedVideo.message = " ";
+			setVideos([...videos]);
+
 			switch (action) {
 				case "up":
 				case "down":

@@ -32,11 +32,24 @@ export default function Video({ video, updateVideo }) {
 			<h3>Controls</h3>
 			<div className="control-message">{video.message}</div>
 			<div className="controls">
-				<button onClick={() => updateVideo(video, "delete")}>
+				<button
+					disabled={video.message ? true : false}
+					onClick={() => updateVideo(video, "delete")}
+				>
 					Remove video
 				</button>
-				<button onClick={() => updateVideo(video, "up")}>Up Vote</button>
-				<button onClick={() => updateVideo(video, "down")}>Down Vote</button>
+				<button
+					disabled={video.message ? true : false}
+					onClick={() => updateVideo(video, "up")}
+				>
+					Up Vote
+				</button>
+				<button
+					disabled={video.message ? true : false}
+					onClick={() => updateVideo(video, "down")}
+				>
+					Down Vote
+				</button>
 			</div>
 		</li>
 	);
