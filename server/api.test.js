@@ -5,7 +5,7 @@ import db from "./db.js";
 describe("/api", () => {
 	describe("/videos", () => {
 		describe("GET", () => {
-			it("Returns the list of videos", async () => {
+			it("Returns the list of videos ordered by id", async () => {
 				const response = await request(app).get("/api/videos");
 
 				expect(response.statusCode).toBe(200);
@@ -16,6 +16,38 @@ describe("/api", () => {
 					"https://www.youtube.com/watch?v=dQw4w9WgXcQ"
 				);
 				expect(response.body.data[0].rating).toBe(23);
+			});
+
+			it("Returns the list of videos ordered by rating ascending", async () => {
+				const response = await request(app).get("/api/videos?order=rating_asc");
+
+				expect(response.statusCode).toBe(200);
+				expect(response.body.data.length).toBe(10);
+				expect(response.body.success).toBe(true);
+				expect(response.body.data[0].title).toBe(
+					"Videos for Cats to Watch - 8 Hour Bird Bonanza"
+				);
+				expect(response.body.data[0].url).toBe(
+					"https://www.youtube.com/watch?v=xbs7FT7dXYc"
+				);
+				expect(response.body.data[0].rating).toBe(11);
+			});
+
+			it("Returns the list of videos ordered by rating descending", async () => {
+				const response = await request(app).get(
+					"/api/videos?order=rating_desc"
+				);
+
+				expect(response.statusCode).toBe(200);
+				expect(response.body.data.length).toBe(10);
+				expect(response.body.success).toBe(true);
+				expect(response.body.data[9].title).toBe(
+					"Videos for Cats to Watch - 8 Hour Bird Bonanza"
+				);
+				expect(response.body.data[9].url).toBe(
+					"https://www.youtube.com/watch?v=xbs7FT7dXYc"
+				);
+				expect(response.body.data[9].rating).toBe(11);
 			});
 		});
 

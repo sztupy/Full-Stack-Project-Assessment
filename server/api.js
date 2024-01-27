@@ -23,9 +23,21 @@ function videoToJson(video) {
 	};
 }
 
-router.get("/videos", async (_, res) => {
+router.get("/videos", async (req, res) => {
 	try {
-		const result = await db.query("SELECT * FROM videos");
+		let orderString = "ORDER BY id ASC";
+		switch (req.query.order) {
+			case "rating_asc":
+				orderString = "ORDER BY rating ASC";
+				break;
+			case "rating_desc":
+				orderString = "ORDER BY rating DESC";
+				break;
+			case "random":
+				orderString = "ORDER BY random()";
+				break;
+		}
+		const result = await db.query("SELECT * FROM videos " + orderString);
 		res.status(200).json({
 			success: true,
 			total: result.rows.length,

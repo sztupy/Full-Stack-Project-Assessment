@@ -2,15 +2,30 @@ import { useState, useEffect } from "react";
 
 import VideoList from "./components/VideoList";
 import VideoSubmission from "./components/VideoSubmission";
+import OrderingSelector from "./components/OrderingSelector";
 
 const App = () => {
 	let [videos, setVideos] = useState([]);
 	let [message, setMessage] = useState(null);
+	let [order, setOrder] = useState("id");
+
+	function orderVideos(videos, order) {
+		switch (order) {
+			case "rating_asc":
+				return videos.sort((a, b) => a.rating - b.rating);
+			case "rating_desc":
+				return videos.sort((a, b) => b.rating - a.rating);
+			case "random":
+				return videos; // this should only sort once when getting from backend, then keep it as-is
+			case "id":
+				return videos.sort((a, b) => a.id - b.id);
+		}
+	}
 
 	useEffect(() => {
 		const fetchVideos = async () => {
 			try {
-				const videoResults = await fetch(`/api/videos`);
+				const videoResults = await fetch(`/api/videos?order=${order}`);
 				const videoResultsJson = await videoResults.json();
 				if (videoResultsJson.success) {
 					setVideos(videoResultsJson.data);
@@ -28,7 +43,7 @@ const App = () => {
 			}
 		};
 		fetchVideos();
-	}, [setVideos, setMessage]);
+	}, [setVideos, setMessage, order]);
 
 	const addVideo = function (title, url) {
 		const publishToApi = async () => {
@@ -43,7 +58,7 @@ const App = () => {
 				});
 				const data = await results.json();
 				if (data.success) {
-					setVideos([...videos, data.data]);
+					setVideos(orderVideos([...videos, data.data], order));
 				} else {
 					setMessage(
 						data.message ||
@@ -80,7 +95,7 @@ const App = () => {
 				selectedVideo.message =
 					"There was an error while trying to delete the video. Please reload the page and try again!";
 			}
-			setVideos([...videos]);
+			setVideos(orderVideos([...videos], order));
 		};
 
 		const voteOnVideo = async (selectedVideo, action) => {
@@ -107,14 +122,14 @@ const App = () => {
 				selectedVideo.message =
 					"There was an error while updating rating to the video. Please reload the page and try again!";
 			}
-			setVideos([...videos]);
+			setVideos(orderVideos([...videos], order));
 		};
 
 		let selectedVideo = videos.find((e) => e.id === video.id);
 
 		if (selectedVideo) {
 			selectedVideo.message = " ";
-			setVideos([...videos]);
+			setVideos(orderVideos([...videos], order));
 
 			switch (action) {
 				case "up":
@@ -140,6 +155,7 @@ const App = () => {
 				you enter on this website will be cleared and reset every 30 minutes.
 			</h2>
 			{message && <h2 className="message">{message}</h2>}
+			<OrderingSelector order={order} setOrder={setOrder} />
 			<VideoList videos={videos} updateVideo={updateVideo} />
 			<VideoSubmission addVideo={addVideo} />
 		</>

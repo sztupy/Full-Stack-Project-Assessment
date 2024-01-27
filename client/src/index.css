@@ -131,6 +131,26 @@ h1 {
 	overflow: hidden;
 }
 
+.order-selector h3 {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.order-selector ul {
+	display: flex;
+	margin-left: auto;
+	margin-right: 1em;
+	width: fit-content;
+}
+
+.order-selector li {
+	list-style-type: none;
+}
+
 .controls {
 	display: grid;
 	column-gap: 1em;
