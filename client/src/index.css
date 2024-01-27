@@ -73,6 +73,25 @@ h1 {
 	text-decoration: underline;
 }
 
+.video .rating:before {
+	content: "❤️ ";
+}
+
+.video .rating {
+	max-width: fit-content;
+	padding: 0.5em;
+
+	display: block;
+	font-size: 2em;
+
+	margin: 0.5em auto;
+
+	border: 1px solid black;
+	border-radius: 10%;
+
+	background-color: bisque;
+}
+
 .video h3 {
 	position: absolute;
 	left: -10000px;
@@ -85,8 +104,7 @@ h1 {
 .controls {
 	display: grid;
 	column-gap: 1em;
-	grid-template-columns: 1fr;
-	margin-top: 1em;
+	grid-template-columns: 1fr 1fr 1fr;
 }
 
 .control-message {

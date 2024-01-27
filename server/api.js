@@ -15,6 +15,7 @@ function videoToJson(video) {
 		id: video.id,
 		url: video.url,
 		title: video.title,
+		rating: video.rating,
 	};
 }
 
@@ -31,6 +32,65 @@ router.get("/videos", async (_, res) => {
 		res
 			.status(500)
 			.json({ success: false, message: "Could not download the video list!" });
+	}
+});
+
+router.get("/videos/:id", async (req, res) => {
+	try {
+		const result = await db.query("SELECT * FROM videos WHERE id = $1", [
+			req.params.id,
+		]);
+		if (result.rows.length !== 1) {
+			return res
+				.status(404)
+				.json({ success: false, message: "Could not find video" });
+		}
+
+		res.status(200).json({ success: true, data: videoToJson(result.rows[0]) });
+	} catch (error) {
+		res
+			.status(500)
+			.json({ success: false, message: "Could not obtain video!" });
+	}
+});
+
+router.post("/videos/:id/:action", async (req, res) => {
+	try {
+		if (req.params.action !== "up" && req.params.action !== "down") {
+			return res
+				.status(422)
+				.json({ success: false, message: "Invalid action" });
+		}
+
+		const result = await db.query("SELECT * FROM videos WHERE id = $1", [
+			req.params.id,
+		]);
+		if (result.rows.length !== 1) {
+			return res
+				.status(404)
+				.json({ success: false, message: "Could not find video" });
+		}
+
+		const operator = req.params.action == "up" ? "+" : "-";
+
+		const updateResult = await db.query(
+			`UPDATE videos SET rating = rating ${operator} 1 WHERE id = $1 RETURNING *`,
+			[req.params.id]
+		);
+
+		if (updateResult.rows.length !== 1) {
+			return res
+				.status(500)
+				.json({ success: false, message: "Error while updating rating" });
+		}
+
+		res
+			.status(200)
+			.json({ success: true, data: videoToJson(updateResult.rows[0]) });
+	} catch (error) {
+		res
+			.status(500)
+			.json({ success: false, message: "Could not update video!" });
 	}
 });
 
@@ -63,8 +123,8 @@ router.post("/videos", async (req, res) => {
 		}
 
 		const insertResult = await db.query(
-			"INSERT INTO videos (title,url) VALUES ($1,$2) RETURNING id",
-			[body.title, body.url]
+			"INSERT INTO videos (title,url,rating) VALUES ($1,$2,$3) RETURNING id",
+			[body.title, body.url, 0]
 		);
 		if (insertResult.rows.length !== 1) {
 			return res.status(500).json({

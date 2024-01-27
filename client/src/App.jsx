@@ -59,8 +59,8 @@ const App = () => {
 		publishToApi();
 	};
 
-	const deleteVideo = function (video) {
-		const deleteVideoAction = async (selectedVideo) => {
+	const updateVideo = function (video, action) {
+		const deleteVideo = async (selectedVideo) => {
 			try {
 				const results = await fetch(`/api/videos/${selectedVideo.id}`, {
 					method: "DELETE",
@@ -83,9 +83,45 @@ const App = () => {
 			setVideos([...videos]);
 		};
 
+		const voteOnVideo = async (selectedVideo, action) => {
+			try {
+				const results = await fetch(
+					`/api/videos/${selectedVideo.id}/${action}`,
+					{
+						method: "POST",
+						headers: {
+							"Access-Control-Allow-Origin": "*",
+						},
+					}
+				);
+				const data = await results.json();
+				if (data.success) {
+					selectedVideo.rating = data.data.rating;
+					selectedVideo.message = null;
+				} else {
+					selectedVideo.message =
+						data.message ||
+						"There was an error while updating rating to the video. Please reload the page and try again!";
+				}
+			} catch (error) {
+				selectedVideo.message =
+					"There was an error while updating rating to the video. Please reload the page and try again!";
+			}
+			setVideos([...videos]);
+		};
+
 		let selectedVideo = videos.find((e) => e.id === video.id);
+
 		if (selectedVideo) {
-			deleteVideoAction(selectedVideo);
+			switch (action) {
+				case "up":
+				case "down":
+					voteOnVideo(selectedVideo, action);
+					break;
+				case "delete":
+					deleteVideo(selectedVideo);
+					break;
+			}
 		}
 	};
 
@@ -93,7 +129,7 @@ const App = () => {
 		<>
 			<h1>Video Recommendations</h1>
 			{message && <h2 className="message">{message}</h2>}
-			<VideoList videos={videos} deleteVideo={deleteVideo} />
+			<VideoList videos={videos} updateVideo={updateVideo} />
 			<VideoSubmission addVideo={addVideo} />
 		</>
 	);

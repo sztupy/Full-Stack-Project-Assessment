@@ -7,11 +7,13 @@ const videos = [
 		id: 1,
 		title: "The Title",
 		url: "https://www.youtube.com/watch?v=ABCDEFGHIJK",
+		rating: 1234,
 	},
 	{
 		id: 2,
 		title: "Other Title",
 		url: "https://www.youtube.com/watch?v=ABCDEFGHIJL",
+		rating: 4321,
 	},
 ];
 

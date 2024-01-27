@@ -21,11 +21,13 @@ describe("Main Page", () => {
 							id: 1,
 							title: "Never Gonna Give You Up",
 							url: "https://www.youtube.com/watch?v=ABCDEFGHIJK",
+							rating: 1234,
 						},
 						{
 							id: 2,
 							title: "Other Title",
 							url: "https://www.youtube.com/watch?v=KJIHGFEDCBA",
+							rating: 4321,
 						},
 					],
 				})
@@ -90,6 +92,7 @@ describe("Main Page", () => {
 						id: 3,
 						title: "New Title",
 						url: "https://www.youtube.com/watch?v=CDEYRFUTURE",
+						rating: 0,
 					},
 				});
 			})

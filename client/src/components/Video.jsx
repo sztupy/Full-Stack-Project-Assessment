@@ -6,7 +6,7 @@ function youtubeLinkParser(url) {
 	return match && match[7].length == 11 ? match[7] : false;
 }
 
-export default function Video({ video, deleteVideo }) {
+export default function Video({ video, updateVideo }) {
 	const youtubeId = youtubeLinkParser(video.url);
 
 	return (
@@ -25,10 +25,18 @@ export default function Video({ video, deleteVideo }) {
 					allowFullScreen
 				></iframe>
 			)}
+			<h3>Rating</h3>
+			<div title="Rating" className="rating">
+				{video.rating}
+			</div>
 			<h3>Controls</h3>
 			<div className="control-message">{video.message}</div>
 			<div className="controls">
-				<button onClick={() => deleteVideo(video)}>Remove video</button>
+				<button onClick={() => updateVideo(video, "delete")}>
+					Remove video
+				</button>
+				<button onClick={() => updateVideo(video, "up")}>Up Vote</button>
+				<button onClick={() => updateVideo(video, "down")}>Down Vote</button>
 			</div>
 		</li>
 	);

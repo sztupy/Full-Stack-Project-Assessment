@@ -6,14 +6,15 @@ const video = {
 	id: 1,
 	title: "The Title",
 	url: "https://www.youtube.com/watch?v=ABCDEFGHIJK",
+	rating: 1234,
 };
-let deleteVideoMock = null;
+let updateVideoMock = null;
 
 describe("Video component", () => {
 	beforeEach(async () => {
-		deleteVideoMock = vi.fn();
+		updateVideoMock = vi.fn();
 
-		render(<Video video={video} deleteVideo={deleteVideoMock} />);
+		render(<Video video={video} updateVideo={updateVideoMock} />);
 
 		await screen.findByText("The Title");
 	});
@@ -28,6 +29,10 @@ describe("Video component", () => {
 				"https://www.youtube.com/embed/ABCDEFGHIJK"
 			);
 		});
+
+		it("Renders the rating", async () => {
+			expect(screen.getByText(1234)).toBeInTheDocument();
+		});
 	});
 
 	describe("Actions", () => {
@@ -40,7 +45,31 @@ describe("Video component", () => {
 		it("Calls the delete action when pressed", async () => {
 			fireEvent.click(screen.getByRole("button", { name: "Remove video" }));
 
-			expect(deleteVideoMock).toHaveBeenCalledWith(video);
+			expect(updateVideoMock).toHaveBeenCalledWith(video, "delete");
+		});
+
+		it("Renders the vote up button", async () => {
+			expect(
+				screen.getByRole("button", { name: "Up Vote" })
+			).toBeInTheDocument();
+		});
+
+		it("Calls the up vote action when pressed", async () => {
+			fireEvent.click(screen.getByRole("button", { name: "Up Vote" }));
+
+			expect(updateVideoMock).toHaveBeenCalledWith(video, "up");
+		});
+
+		it("Renders the vote down button", async () => {
+			expect(
+				screen.getByRole("button", { name: "Down Vote" })
+			).toBeInTheDocument();
+		});
+
+		it("Calls the down vote action when pressed", async () => {
+			fireEvent.click(screen.getByRole("button", { name: "Down Vote" }));
+
+			expect(updateVideoMock).toHaveBeenCalledWith(video, "down");
 		});
 	});
 });

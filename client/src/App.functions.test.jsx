@@ -4,13 +4,13 @@ import { http, HttpResponse } from "msw";
 
 import App from "./App.jsx";
 
-let deleteVideoFunction = null;
+let updateVideoFunction = null;
 let addVideoFunction = null;
 let videosList = null;
 
 vi.mock("../src/components/VideoList", () => ({
-	default: function VideoList({ videos, deleteVideo }) {
-		deleteVideoFunction = deleteVideo;
+	default: function VideoList({ videos, updateVideo }) {
+		updateVideoFunction = updateVideo;
 		videosList = videos;
 		return (
 			<mock-video-list data-testid="video-list">
@@ -56,6 +56,7 @@ describe("AddVideo", () => {
 						id: 1,
 						title: "TheNewTitle",
 						url: "Url",
+						rating: 0,
 					},
 				});
 			})
@@ -86,7 +87,7 @@ describe("UpdateVideo", () => {
 			http.get("/api/videos", () =>
 				HttpResponse.json({
 					success: true,
-					data: [{ id: 1, title: "The Title", url: "Url" }],
+					data: [{ id: 1, title: "The Title", url: "Url", rating: 10 }],
 				})
 			)
 		);
@@ -96,13 +97,43 @@ describe("UpdateVideo", () => {
 		await screen.findByText("The Title");
 	});
 
+	["up", "down"].forEach((action) => {
+		describe(`Using action ${action}`, () => {
+			it("Updates the rank of the video", async () => {
+				server.use(
+					http.post("/api/videos/1/" + action, async () =>
+						HttpResponse.json({ success: true, data: { id: 1, rating: 11 } })
+					)
+				);
+
+				await act(async () => await updateVideoFunction({ id: 1 }, action));
+
+				expect(videosList).toHaveLength(1);
+				expect(videosList[0].rating).toBe(11);
+			});
+
+			it("Sets an error message in case there are issues", async () => {
+				server.use(
+					http.post("/api/videos/1/" + action, async () =>
+						HttpResponse.json({ success: false, message: "Not okay" })
+					)
+				);
+
+				await act(async () => await updateVideoFunction({ id: 1 }, action));
+
+				expect(videosList).toHaveLength(1);
+				expect(videosList[0].message).toBe("Not okay");
+			});
+		});
+	});
+
 	describe("Using action delete", () => {
 		it("Removes the video from the list", async () => {
 			server.use(
 				http.delete("/api/videos/1", () => HttpResponse.json({ success: true }))
 			);
 
-			await act(async () => await deleteVideoFunction({ id: 1 }));
+			await act(async () => await updateVideoFunction({ id: 1 }, "delete"));
 
 			expect(videosList).toHaveLength(0);
 		});
@@ -114,7 +145,7 @@ describe("UpdateVideo", () => {
 				)
 			);
 
-			await act(async () => await deleteVideoFunction({ id: 1 }));
+			await act(async () => await updateVideoFunction({ id: 1 }, "delete"));
 
 			expect(videosList).toHaveLength(1);
 			expect(videosList[0].message).toBe("Not okay");
