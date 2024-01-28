@@ -3,11 +3,5 @@
     "installCommand": "cd .. && npm install",
     "outputDirectory": "static",
     "regions": ["fra1"],
-    "build": {
-        "env": {
-            "NODEJS_AWS_HANDLER_NAME": "handler"
-        }
-    },
-
     "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
 }
