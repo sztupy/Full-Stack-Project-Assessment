@@ -147,12 +147,12 @@ const App = () => {
 		<>
 			<h1>Video Recommendations</h1>
 			<h2 className="notice">
-				Welcome to this demo solution for the{" "}
+				<b>Welcome to this demo solution for the{" "}
 				<a href="https://github.com/CodeYourFuture/Full-Stack-Project-Assessment/">
 					Code Your Future full stack assessment project
 				</a>
 				. Feel free to play around on this page. However do note that any data
-				you enter on this website will be cleared and reset every 30 minutes.
+				you enter on this website will be cleared and reset every 30 minutes.</b>
 			</h2>
 			{message && <h2 className="message">{message}</h2>}
 			<OrderingSelector order={order} setOrder={setOrder} />
