@@ -1,6 +1,6 @@
 // Netlify wrapper for express.js
 
-// This will convert your express.JS application into a serverless lambda that is compatible by AWS Lambda and Netlify Functions.
+// This will convert your express.JS application into a serverless lambda that is compatible by AWS Lambda, Netlify Functions and Vercel.
 // Note that this has a large performance impact as your entire express system needs to load up for every single request.
 // Also each request runs in isolation so you are unable to share or cache values in your codebase.
 // For example the database connection will be recreated at every call

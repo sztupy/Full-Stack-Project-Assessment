@@ -2,7 +2,7 @@
   publish = "server/static"
   command = "npm run build"
 [functions]
-  directory = "server/functions"
+  directory = "server/api"
   external_node_modules = ["express"]
   node_bundler = "esbuild"
   included_files = ["db/initdb.sql"]
@@ -10,4 +10,4 @@
   force = true
   from = "/api/*"
   status = 200
-  to = "/.netlify/functions/app/:splat"
+  to = "/.netlify/functions/index/:splat"
