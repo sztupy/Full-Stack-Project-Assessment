@@ -1,7 +1,7 @@
 {
     "buildCommand": "npm run build",
     "installCommand": "npm install",
-    "outputDirectory": "api/static",
+    "outputDirectory": "server/static",
     "regions": ["fra1"],
     "build": {
         "env": {
