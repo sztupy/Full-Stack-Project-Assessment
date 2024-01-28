@@ -8,5 +8,6 @@
             "NODEJS_AWS_HANDLER_NAME": "handler"
         }
     },
+
     "rewrites": [{ "source": "/api/(.*)", "destination": "/api" }]
 }
