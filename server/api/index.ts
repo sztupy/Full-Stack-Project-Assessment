@@ -1,5 +1,7 @@
+// @ts-ignore
 import express from "express";
 import serverless from "serverless-http";
+// @ts-ignore
 import apiRouter from "../api.js";
 
 const app = express();
