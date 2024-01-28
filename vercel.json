@@ -8,5 +8,5 @@
             "NODEJS_AWS_HANDLER_NAME": "handler"
         }
     },
-    "rewrites": [{ "source": "/api/(.*)", "destination": "/server/functions/app" }]
+    "rewrites": [{ "source": "/api/(.*)", "destination": "/server/functions" }]
 }
