@@ -1,0 +1,12 @@
+{
+    "buildCommand": "npm run build",
+    "installCommand": "npm install",
+    "outputDirectory": "server/static",
+    "regions": ["fra1"],
+    "functions": {
+        "server/app.js": {
+
+        }
+    },
+    "rewrites": [{ "source": "/api/(.*)", "destination": "/server/app" }]
+}
