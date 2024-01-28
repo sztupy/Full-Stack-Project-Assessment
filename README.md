@@ -71,7 +71,7 @@ Here is an example solution for both frontend and backend, including all optiona
 
 https://cyf-fsa-solution.netlify.app/
 
-**Note:** You can design the website to look however you like.
+**Note:** You can design the website to look however you like!
 
 ## Using this project for the launch project and other portfolio pieces
 
