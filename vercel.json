@@ -4,7 +4,7 @@
     "outputDirectory": "server/static",
     "regions": ["fra1"],
     "functions": {
-        "app.js": {
+        "/server/app.js": {
             "maxDuration": 10
         }
     },
