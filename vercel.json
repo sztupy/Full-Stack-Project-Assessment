@@ -5,6 +5,7 @@
     "regions": ["fra1"],
     "functions": {
         "server/app.js": {
+            "maxDuration": 10
         }
     },
     "rewrites": [{ "source": "/api/(.*)", "destination": "/server/app" }]
