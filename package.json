@@ -4,7 +4,7 @@
 	"description": "Video Recommendations",
 	"private": true,
 	"scripts": {
-		"build": "npm --workspace client run build",
+		"build": "npm --workspace client run build && ln -s server api",
 		"dev": "concurrently --kill-others \"npm:dev:*\"",
 		"dev:client": "cross-env PORT=3000 npm --workspace client run dev",
 		"dev:server": "cross-env LOG_LEVEL=debug PORT=3100 npm --workspace server run dev",

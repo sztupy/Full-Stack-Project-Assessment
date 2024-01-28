@@ -3,10 +3,5 @@
     "installCommand": "npm install",
     "outputDirectory": "server/static",
     "regions": ["fra1"],
-    "functions": {
-        "server/app.js": {
-            "maxDuration": 10
-        }
-    },
-    "rewrites": [{ "source": "/api/(.*)", "destination": "/server/app" }]
+    "rewrites": [{ "source": "/api/(.*)", "destination": "/api/app" }]
 }
