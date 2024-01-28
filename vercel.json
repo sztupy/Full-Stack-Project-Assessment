@@ -3,5 +3,10 @@
     "installCommand": "npm install",
     "outputDirectory": "server/static",
     "regions": ["fra1"],
+    "functions": {
+        "app.js": {
+            "maxDuration": 10
+        }
+    },
     "rewrites": [{ "source": "/api/(.*)", "destination": "/api/app" }]
 }
