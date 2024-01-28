@@ -7,7 +7,7 @@ const serverPort = process.env.SERVER_PORT ?? "3100";
 // https://vitejs.dev/config/
 export default defineConfig({
 	build: {
-		outDir: "../server/static",
+		outDir: "../api/static",
 	},
 	plugins: [react()],
 	server: {
